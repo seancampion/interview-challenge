@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<input type="hidden" id="session-id" name="session-id" value="@ViewBag.SessionId" />
+
+<div id="calculator-screen-ui" class="card">
+    <div id="calculator-screen-value" class="card-body">
+        0
+    </div>
+</div>
+
+<div id="calculator-button-ui">
+    <div class="row">
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                7
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                8
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                9
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-light calculator-operator-item" data-operation="add">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                4
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                5
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                6
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-light calculator-operator-item" data-operation="subtract">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                1
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                2
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                3
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-light calculator-operator-item" data-operation="multiply">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                0
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-dark calculator-number-item">
+                .
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-danger calculator-execution-item" data-operation="equals">
+                <i class="fas fa-equals"></i>
+            </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-light calculator-operator-item" data-operation="divide">
+                <i class="fas fa-divide"></i>
+            </button>
+        </div>
+    </div>
+</div>

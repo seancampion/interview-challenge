@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechnicalChallengeApp.DataRepository\TechnicalChallengeApp.DataRepository.csproj" />
+    <ProjectReference Include="..\TechnicalChallengeApp.Model\TechnicalChallengeApp.Model.csproj" />
+  </ItemGroup>
+
+</Project>
