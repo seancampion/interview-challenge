@@ -1,5 +1,4 @@
 # Technical Interview Challenge
----
 
 Thank you for participating in the technical interview challenge! This challenge is designed to test your skill set for feature design and bug fixes in the following areas:
 
@@ -39,8 +38,6 @@ We would like to add support so the user can use the numerical keypad on their k
 If the user refreshes the screen, the last total value in the screen is wiped out.
 
 We would like to add support so, upon a page refresh, the last total is still visible. This would require adding a new database column to the SessionData table in the database to store the last calculated value, then making a request for that value when the page is loaded.
-
----
 
 ### Bug #1: Button Increment Count Not Storing
 
