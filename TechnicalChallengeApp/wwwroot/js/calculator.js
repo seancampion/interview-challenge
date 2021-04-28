@@ -71,11 +71,13 @@
         //
         const body = document.querySelector('body');
         body.addEventListener('keydown', async event => {
-            const incomingValue = event.key;
+            const incomingKeypress = event.key;
+            const operatorRegex = '([/*+-])+'
 
             // Check if the key pressed was a number, if not, then ignore
-            if (!isNaN(incomingValue))
+            if (!isNaN(incomingKeypress))
             {
+                const incomingValue = incomingKeypress;
                 const currentValue = (calculatingValue ?? '').toString();
 
                 //
@@ -87,6 +89,53 @@
 
                 calculatingValue = currentValue + incomingValue;
                 updateCalculatorDisplay(calculatingValue);
+
+                await logButtonPress();
+            }
+
+            if (incomingKeypress.match(operatorRegex))
+            {
+                const operatorValue = incomingKeypress;
+
+                if (calculatingValue === null) {
+                    lastOperator = operatorValue;
+                    return;
+                }
+
+                if (lastTotal === null) {
+                    lastTotal = calculatingValue;
+                }
+
+                //
+                // If there is a value here, we have not hit
+                // the equals button, meaning we need to complete
+                // the last operator action, then prepare for
+                // the next one
+                //
+                if (lastOperator !== null) {
+                    await performCalculationRequestAsync();
+                }
+
+                if (operatorValue == '+')
+                {
+                    lastOperator = "add";
+                }
+
+                if (operatorValue == '-')
+                {
+                    lastOperator = "subtract";
+                }
+
+                if (operatorValue == '*')
+                {
+                    lastOperator = "multiply";
+                }
+
+                if (operatorValue == '/')
+                {
+                    lastOperator = "divide";
+                }
+                calculatingValue = null;
 
                 await logButtonPress();
             }
