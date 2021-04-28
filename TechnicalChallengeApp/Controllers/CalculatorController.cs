@@ -63,5 +63,21 @@ namespace TechnicalChallengeApp.Controllers
 
             return pushResponse;
         }
+
+        [HttpGet]
+        [Route("GetLastTotal")]
+        public async Task<ApiResponse<int>> GetLastTotal(SessionRequest request)
+        {
+            var pushResponse = await _sessionManagement.GetLastTotal(request.SessionId);
+            return pushResponse;
+        }
+
+        [HttpPost]
+        [Route("UpdateLastTotal")]
+        public async Task<ApiResponse> UpdateLastTotal(SessionRequest<int> request)
+        {
+            var pushResponse = await _sessionManagement.UpdateLastTotal(request.SessionId, request.Data);
+            return pushResponse;
+        }
     }
 }

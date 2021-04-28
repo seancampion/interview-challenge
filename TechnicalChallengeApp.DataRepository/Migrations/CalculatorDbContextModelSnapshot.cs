@@ -25,6 +25,9 @@ namespace TechnicalChallengeApp.DataRepository.Migrations
                     b.Property<int>("ButtonsPushed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("LastTotal")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("SessionId");
 
                     b.ToTable("SessionData");

@@ -16,5 +16,10 @@ namespace TechnicalChallengeApp.DataRepository.Table
         /// How many times a button has been pushed during the session
         /// </summary>
         public int ButtonsPushed { get; set; }
+
+        /// <summary>
+        /// The last total calculated
+        /// </summary>
+        public int LastTotal { get; set; }
     }
 }

@@ -22,7 +22,8 @@ namespace TechnicalChallengeApp.BusinessLogic.Session
                 var sessionData = new SessionData
                 {
                     ButtonsPushed = 0,
-                    SessionId = sessionId
+                    SessionId = sessionId,
+                    LastTotal = 0
                 };
 
                 db.Add(sessionData);
@@ -76,6 +77,43 @@ namespace TechnicalChallengeApp.BusinessLogic.Session
                 return new ApiResponse<int>
                 {
                     Data = sessionData.ButtonsPushed,
+                    IsSuccess = true,
+                    Message = "Button counter incremented"
+                };
+            }
+        }
+
+        public async Task<ApiResponse<int>> GetLastTotal(Guid sessionId)
+        {
+            using (var db = new CalculatorDbContext())
+            {
+                var sessionData = await db.SessionData
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(sd => sd.SessionId == sessionId);
+
+                int lastTotal = sessionData.LastTotal;
+
+                return new ApiResponse<int>
+                {
+                    Data = sessionData.LastTotal,
+                    IsSuccess = true,
+                    Message = "Last toal retrieved"
+                };
+            }
+        }
+
+        public async Task<ApiResponse> UpdateLastTotal(Guid sessionId, int lastTotal)
+        {
+            using (var db = new CalculatorDbContext())
+            {
+                var sessionData = await db.SessionData
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(sd => sd.SessionId == sessionId);
+
+                sessionData.LastTotal = lastTotal;
+
+                return new ApiResponse
+                {
                     IsSuccess = true,
                     Message = "Button counter incremented"
                 };

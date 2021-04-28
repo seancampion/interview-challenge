@@ -9,7 +9,7 @@ using TechnicalChallengeApp.DataRepository;
 namespace TechnicalChallengeApp.DataRepository.Migrations
 {
     [DbContext(typeof(CalculatorDbContext))]
-    [Migration("20210422203826_Initial")]
+    [Migration("20210428214127_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,9 @@ namespace TechnicalChallengeApp.DataRepository.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ButtonsPushed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LastTotal")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("SessionId");
