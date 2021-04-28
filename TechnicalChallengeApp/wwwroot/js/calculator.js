@@ -67,6 +67,33 @@
         });
 
         //
+        // Event listener for numerical keypress
+        //
+        const body = document.querySelector('body');
+        body.addEventListener('keydown', async event => {
+            const incomingValue = event.key;
+
+            // Check if the key pressed was a number, if not, then ignore
+            if (!isNaN(incomingValue))
+            {
+                const currentValue = (calculatingValue ?? '').toString();
+
+                //
+                // Only allow processing of a single decimal point
+                //
+                if (incomingValue === '.' && currentValue.indexOf('.') !== -1) {
+                    return;
+                }
+
+                calculatingValue = currentValue + incomingValue;
+                updateCalculatorDisplay(calculatingValue);
+
+                await logButtonPress();
+            }
+            
+        });
+
+        //
         // Event listener for all operator buttons
         //
         const operatorButtons = document.querySelectorAll('.calculator-operator-item');
