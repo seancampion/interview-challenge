@@ -9,8 +9,8 @@ using TechnicalChallengeApp.DataRepository;
 namespace TechnicalChallengeApp.DataRepository.Migrations
 {
     [DbContext(typeof(CalculatorDbContext))]
-    [Migration("20210422203826_Initial")]
-    partial class Initial
+    [Migration("20210428235310_AddLastTotalColumn")]
+    partial class AddLastTotalColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,18 +19,21 @@ namespace TechnicalChallengeApp.DataRepository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("TechnicalChallengeApp.DataRepository.Table.SessionData", b =>
-            {
-                b.Property<Guid>("SessionId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("TEXT");
+                {
+                    b.Property<Guid>("SessionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                b.Property<int>("ButtonsPushed")
-                    .HasColumnType("INTEGER");
+                    b.Property<int>("ButtonsPushed")
+                        .HasColumnType("INTEGER");
 
-                b.HasKey("SessionId");
+                    b.Property<int>("LastTotal")
+                        .HasColumnType("INTEGER");
 
-                b.ToTable("SessionData");
-            });
+                    b.HasKey("SessionId");
+
+                    b.ToTable("SessionData");
+                });
 #pragma warning restore 612, 618
         }
     }
