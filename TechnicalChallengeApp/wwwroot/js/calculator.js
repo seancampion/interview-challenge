@@ -72,9 +72,10 @@
         const body = document.querySelector('body');
         body.addEventListener('keydown', async event => {
             const incomingKeypress = event.key;
-            const operatorRegex = '([/*+-])+'
+            const operatorRegex = '([/*+-])+';
+            const executionRegex = '([Enter])+';
 
-            // Check if the key pressed was a number, if not, then ignore
+            // Check if the key pressed was a number
             if (!isNaN(incomingKeypress))
             {
                 const incomingValue = incomingKeypress;
@@ -93,6 +94,7 @@
                 await logButtonPress();
             }
 
+            //Check if keypress is an operator
             if (incomingKeypress.match(operatorRegex))
             {
                 const operatorValue = incomingKeypress;
@@ -116,6 +118,7 @@
                     await performCalculationRequestAsync();
                 }
 
+                //Set lastOperator based on it's enum value
                 if (operatorValue == '+')
                 {
                     lastOperator = "add";
@@ -137,6 +140,17 @@
                 }
                 calculatingValue = null;
 
+                await logButtonPress();
+            }
+
+            //Checks for enter key being pressed in order to execute
+            if (incomingKeypress.match(executionRegex))
+            {
+                if (lastOperator === null || calculatingValue === null) {
+                    return;
+                }
+
+                await performCalculationRequestAsync();
                 await logButtonPress();
             }
             
