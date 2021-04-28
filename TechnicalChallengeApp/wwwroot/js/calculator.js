@@ -67,6 +67,96 @@
         });
 
         //
+        // Event listener for numerical keypress
+        //
+        const body = document.querySelector('body');
+        body.addEventListener('keydown', async event => {
+            const incomingKeypress = event.key;
+            const operatorRegex = '([/*+-])+';
+            const executionRegex = '([Enter])+';
+
+            // Check if the key pressed was a number
+            if (!isNaN(incomingKeypress))
+            {
+                const incomingValue = incomingKeypress;
+                const currentValue = (calculatingValue ?? '').toString();
+
+                //
+                // Only allow processing of a single decimal point
+                //
+                if (incomingValue === '.' && currentValue.indexOf('.') !== -1) {
+                    return;
+                }
+
+                calculatingValue = currentValue + incomingValue;
+                updateCalculatorDisplay(calculatingValue);
+
+                await logButtonPress();
+            }
+
+            //Check if keypress is an operator
+            if (incomingKeypress.match(operatorRegex))
+            {
+                const operatorValue = incomingKeypress;
+
+                if (calculatingValue === null) {
+                    lastOperator = operatorValue;
+                    return;
+                }
+
+                if (lastTotal === null) {
+                    lastTotal = calculatingValue;
+                }
+
+                //
+                // If there is a value here, we have not hit
+                // the equals button, meaning we need to complete
+                // the last operator action, then prepare for
+                // the next one
+                //
+                if (lastOperator !== null) {
+                    await performCalculationRequestAsync();
+                }
+
+                //Set lastOperator based on it's enum value
+                if (operatorValue == '+')
+                {
+                    lastOperator = "add";
+                }
+
+                if (operatorValue == '-')
+                {
+                    lastOperator = "subtract";
+                }
+
+                if (operatorValue == '*')
+                {
+                    lastOperator = "multiply";
+                }
+
+                if (operatorValue == '/')
+                {
+                    lastOperator = "divide";
+                }
+                calculatingValue = null;
+
+                await logButtonPress();
+            }
+
+            //Checks for enter key being pressed in order to execute
+            if (incomingKeypress.match(executionRegex))
+            {
+                if (lastOperator === null || calculatingValue === null) {
+                    return;
+                }
+
+                await performCalculationRequestAsync();
+                await logButtonPress();
+            }
+            
+        });
+
+        //
         // Event listener for all operator buttons
         //
         const operatorButtons = document.querySelectorAll('.calculator-operator-item');
