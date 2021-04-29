@@ -38,15 +38,15 @@ namespace TechnicalChallengeApp.BusinessLogic.Calculation
                     break;
 
                 case CalculationType.Divide:
-                    try
-                    {
-                        apiResponse.Data.Total = left / right;
-                    }
-                    catch (DivideByZeroException)
+                    if(right == 0)
                     {
                         apiResponse.IsSuccess = false;
                         apiResponse.Message = "You cannot divide by zero";
+                        break;
                     }
+
+                    apiResponse.Data.Total = left / right;
+
                     break;
             }
 
