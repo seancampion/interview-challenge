@@ -25,5 +25,9 @@ namespace TechnicalChallengeApp.BusinessLogic.Session
         /// <param name="sessionId">The user's session identifier</param>
         /// <returns>The total button count amount and if it was a success or not</returns>
         Task<ApiResponse<int>> GetTotalButtonsPushedAsync(Guid sessionId);
+
+        Task<ApiResponse<int>> GetLastTotal(Guid sessionId);
+
+        Task<ApiResponse> UpdateLastTotal(Guid sessionId, int lastTotal);
     }
 }

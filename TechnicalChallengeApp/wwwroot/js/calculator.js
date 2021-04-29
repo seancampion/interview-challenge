@@ -207,8 +207,46 @@
             }
 
             await performCalculationRequestAsync();
+            await updateLastTotal();
             await logButtonPress();
         });
+    }
+
+    const updateLastTotal = async () => {
+        const request =
+        {
+            sessionId: sessionIdValue,
+            data: parseFloat(lastTotal)
+        };
+
+        await fetch('/api/calculator/updatelasttotal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request)
+        });
+    }
+
+    const getLastTotal = async () =>
+    {
+        const request =
+        {
+            sessionId: sessionIdValue
+        }; 
+
+        const response = await fetch('/api/calculator/getlasttotal', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request)
+        });
+
+        const responseBody = await response.json();
+
+        lastTotal = responseBody.data;
+        updateCalculatorDisplay(lastTotal);
     }
 
     /**

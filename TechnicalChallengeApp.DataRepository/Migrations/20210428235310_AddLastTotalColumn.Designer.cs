@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechnicalChallengeApp.DataRepository;
 
 namespace TechnicalChallengeApp.DataRepository.Migrations
 {
     [DbContext(typeof(CalculatorDbContext))]
-    partial class CalculatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210428235310_AddLastTotalColumn")]
+    partial class AddLastTotalColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

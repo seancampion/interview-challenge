@@ -19,18 +19,18 @@ namespace TechnicalChallengeApp.DataRepository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("TechnicalChallengeApp.DataRepository.Table.SessionData", b =>
-                {
-                    b.Property<Guid>("SessionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+            {
+                b.Property<Guid>("SessionId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("ButtonsPushed")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("ButtonsPushed")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("SessionId");
+                b.HasKey("SessionId");
 
-                    b.ToTable("SessionData");
-                });
+                b.ToTable("SessionData");
+            });
 #pragma warning restore 612, 618
         }
     }
