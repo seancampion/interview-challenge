@@ -228,7 +228,7 @@
         });
     }
 
-    const getLastTotal = async () =>
+    const getLastTotal = () =>
     {
         const request =
         {
