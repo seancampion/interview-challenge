@@ -47,10 +47,11 @@ namespace TechnicalChallengeApp.BusinessLogic.Session
             using (var db = new CalculatorDbContext())
             {
                 var sessionData = await db.SessionData
-                    .AsNoTracking()
                     .FirstOrDefaultAsync(sd => sd.SessionId == sessionId);
 
                 sessionData.ButtonsPushed++;
+
+                db.SaveChanges();
 
                 return new ApiResponse
                 {
